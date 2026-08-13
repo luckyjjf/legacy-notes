@@ -255,6 +255,26 @@
             font-size: 0.9rem; color: var(--text-light);
         }
 
+        /* ===== Section: About ===== */
+        .about { background: var(--white); }
+        .about-content { max-width: 800px; margin: 0 auto; }
+        .about-intro {
+            text-align: center; font-size: 1.05rem;
+            color: var(--text); line-height: 2;
+            margin-bottom: 3rem;
+        }
+        .about-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+        }
+        .about-item {
+            background: var(--cream); border-radius: var(--radius);
+            padding: 1.8rem; text-align: center;
+        }
+        .about-icon { font-size: 2rem; margin-bottom: 0.8rem; }
+        .about-item h4 { font-size: 1rem; margin-bottom: 0.5rem; }
+        .about-item p { font-size: 0.9rem; color: var(--text-light); line-height: 1.8; }
+
         /* ===== Section: Contact ===== */
         .contact {
             background: var(--green); color: #fff; text-align: center;
@@ -340,6 +360,7 @@
             <div class="logo">蔓之楚之<span>.</span></div>
             <nav>
                 <a href="#services">服务</a>
+                <a href="#about">关于我们</a>
                 <a href="#process">流程</a>
                 <a href="#pricing">价格</a>
                 <a href="#faq">常见问题</a>
@@ -515,6 +536,44 @@
                 </div>
             </div>
             <p class="venue-note">📍 上海市青浦区白鹤镇白鹤工业园 B 区 4 号楼 2 楼</p>
+        </div>
+    </section>
+
+    <hr class="section-divider">
+
+    <!-- ===== About ===== -->
+    <section class="about" id="about">
+        <div class="container">
+            <h2>关于蔓之楚之</h2>
+            <p class="section-subtitle">把重要的事，托付给值得信任的人</p>
+            <div class="about-content">
+                <p class="about-intro">
+                    蔓之楚之（蔓楚科技）是一家专注于「非正式身后托付」服务的专业机构。
+                    我们相信，生命中的许多心意值得被安放、被传递——哪怕说不出口，也不应被遗忘。
+                </p>
+                <div class="about-grid">
+                    <div class="about-item">
+                        <div class="about-icon">🤝</div>
+                        <h4>我们的使命</h4>
+                        <p>为每一位托付人保管好那些「重要但不好当面说」的心愿，并在需要时温暖、可靠地交付。</p>
+                    </div>
+                    <div class="about-item">
+                        <div class="about-icon">🔒</div>
+                        <h4>我们的承诺</h4>
+                        <p>加密存储、人工陪伴、多因素确认，确保托付内容安全保密，交付过程有温度、有分寸。</p>
+                    </div>
+                    <div class="about-item">
+                        <div class="about-icon">📍</div>
+                        <h4>我们的场地</h4>
+                        <p>位于上海市青浦区白鹤镇白鹤工业园，标准化仓储与专业登记流程，实物托付安全有序。</p>
+                    </div>
+                    <div class="about-item">
+                        <div class="about-icon">💚</div>
+                        <h4>我们的初心</h4>
+                        <p>不追求冰冷的自动化，坚持以真人服务陪伴每一段托付旅程，让信任落地。</p>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
