@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>蔓之楚之 — 身后托付，安心之选</title>
+    <meta name="description" content="蔓之楚之专注于低风险、高情感价值的非正式身后托付服务。实物物品托付、数字账号处理、遗愿清单定制服务。" />
+    <style>
+        /* ===== Reset & Base ===== */
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Noto Sans SC", "Microsoft YaHei", sans-serif;
+            color: #3D3D3D;
+            background: #FAF7F2;
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+        }
+        a { color: inherit; text-decoration: none; }
+        img { max-width: 100%; display: block; }
+
+        /* ===== Colors ===== */
+        :root {
+            --green: #5B7B5A;
+            --green-light: #7FA07E;
+            --green-bg: #F0F5EF;
+            --terracotta: #C87A5A;
+            --terracotta-light: #E8A88A;
+            --cream: #FAF7F2;
+            --cream-dark: #F2EDE4;
+            --text: #3D3D3D;
+            --text-light: #7A7A7A;
+            --white: #FFFFFF;
+            --shadow: 0 4px 20px rgba(0,0,0,0.06);
+            --radius: 16px;
+            --radius-sm: 10px;
+        }
+
+        /* ===== Typography ===== */
+        h1, h2, h3 { font-weight: 600; line-height: 1.4; }
+        h1 { font-size: clamp(2rem, 5vw, 3.2rem); }
+        h2 { font-size: clamp(1.6rem, 3.5vw, 2.2rem); text-align: center; margin-bottom: 0.5rem; }
+        h3 { font-size: 1.2rem; }
+        .section-subtitle { text-align: center; color: var(--text-light); font-size: 1rem; margin-bottom: 3rem; }
+
+        /* ===== Layout ===== */
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 1.5rem; }
+        section { padding: 5rem 0; }
+        .section-divider { border: none; height: 1px; background: linear-gradient(to right, transparent, #DCD5CB, transparent); margin: 0; }
+
+        /* ===== Header ===== */
+        header {
+            position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+            background: rgba(250, 247, 242, 0.9); backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
+        header .container {
+            display: flex; justify-content: space-between; align-items: center;
+            height: 64px;
+        }
+        .logo { font-size: 1.3rem; font-weight: 700; color: var(--green); letter-spacing: 0.05em; }
+        .logo span { font-weight: 300; color: var(--text-light); }
+        nav a {
+            margin-left: 1.8rem; font-size: 0.9rem; color: var(--text-light);
+            transition: color 0.2s;
+        }
+        nav a:hover { color: var(--green); }
+        nav .cta-nav {
+            background: var(--green); color: #fff; padding: 0.5rem 1.2rem;
+            border-radius: 50px; font-size: 0.85rem;
+        }
+        nav .cta-nav:hover { background: var(--green-light); color: #fff; }
+
+        /* ===== Hero ===== */
+        .hero {
+            padding: 10rem 0 6rem;
+            background: linear-gradient(165deg, var(--cream) 0%, var(--cream-dark) 100%);
+            position: relative; overflow: hidden;
+        }
+        .hero::before {
+            content: '';
+            position: absolute; top: -30%; right: -10%; width: 60%; height: 80%;
+            background: radial-gradient(ellipse, rgba(91,123,90,0.06) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        .hero::after {
+            content: '';
+            position: absolute; bottom: -20%; left: -10%; width: 50%; height: 70%;
+            background: radial-gradient(ellipse, rgba(200,122,90,0.05) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        .hero .container { position: relative; z-index: 1; text-align: center; }
+        .hero h1 { margin-bottom: 1rem; }
+        .hero h1 .accent { color: var(--green); }
+        .hero .tagline { font-size: 1.15rem; color: var(--text-light); max-width: 600px; margin: 0 auto 2.5rem; }
+        .hero-buttons { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+        .btn {
+            display: inline-block; padding: 0.9rem 2.2rem; border-radius: 50px;
+            font-size: 1rem; font-weight: 500; cursor: pointer; transition: all 0.25s;
+            border: none;
+        }
+        .btn-primary { background: var(--green); color: #fff; }
+        .btn-primary:hover { background: var(--green-light); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(91,123,90,0.3); }
+        .btn-secondary { background: var(--white); color: var(--text); border: 1px solid #DCD5CB; }
+        .btn-secondary:hover { background: var(--cream-dark); transform: translateY(-2px); }
+
+        .hero-contact {
+            display: inline-flex; align-items: center; gap: 1.5rem;
+            background: var(--white); border-radius: var(--radius);
+            padding: 1.2rem 2rem; margin-top: 2.5rem;
+            box-shadow: var(--shadow); text-align: left;
+        }
+        .hero-contact-qr { display: block; line-height: 0; }
+        .hero-contact-qr:hover img { transform: scale(1.03); }
+        .hero-contact-qr img {
+            width: 120px; height: auto; border-radius: 8px;
+            transition: transform 0.2s; cursor: pointer;
+        }
+        .hero-contact-info { display: flex; flex-direction: column; gap: 0.3rem; }
+        .hero-contact-label { font-size: 0.95rem; font-weight: 600; color: var(--text); }
+        .hero-contact-note { font-size: 0.82rem; color: var(--text-light); }
+
+        /* ===== Section: Problem ===== */
+        .problem { background: var(--white); }
+        .problem-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.5rem; margin-top: 2rem;
+        }
+        .problem-card {
+            background: var(--cream); padding: 1.8rem; border-radius: var(--radius);
+            text-align: center;
+        }
+        .problem-card .icon { font-size: 2rem; margin-bottom: 0.8rem; }
+        .problem-card h4 { font-size: 1rem; margin-bottom: 0.4rem; }
+        .problem-card p { font-size: 0.9rem; color: var(--text-light); }
+
+        /* ===== Section: Services ===== */
+        .services { background: var(--cream); }
+        .service-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1.5rem;
+        }
+        .service-card {
+            background: var(--white); border-radius: var(--radius); padding: 2rem;
+            box-shadow: var(--shadow); transition: transform 0.25s, box-shadow 0.25s;
+            display: flex; flex-direction: column;
+        }
+        .service-card:hover { transform: translateY(-4px); box-shadow: 0 8px 30px rgba(0,0,0,0.08); }
+        .service-card .icon { font-size: 2.4rem; margin-bottom: 1rem; }
+        .service-card h3 { margin-bottom: 0.5rem; }
+        .service-card .desc { font-size: 0.9rem; color: var(--text-light); flex: 1; }
+        .service-card .tag {
+            display: inline-block; margin-top: 1rem; padding: 0.25rem 0.8rem;
+            border-radius: 50px; font-size: 0.8rem; font-weight: 500;
+        }
+        .tag-standard { background: var(--green-bg); color: var(--green); }
+        .tag-custom { background: #F5EDE8; color: var(--terracotta); }
+        .service-card ul {
+            margin-top: 0.8rem; list-style: none; font-size: 0.9rem; color: var(--text-light);
+        }
+        .service-card ul li::before { content: "✓ "; color: var(--green); font-weight: 600; }
+
+        .service-card.custom {
+            border: 2px dashed var(--terracotta-light);
+            background: linear-gradient(135deg, #FFF8F4, var(--white));
+        }
+
+        /* ===== Section: Process ===== */
+        .process { background: var(--white); }
+        .process-steps {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 1rem; margin-top: 2rem; counter-reset: step;
+        }
+        .process-step {
+            text-align: center; padding: 1.5rem 1rem; position: relative;
+        }
+        .process-step::after {
+            content: '→'; position: absolute; right: -0.8rem; top: 50%;
+            transform: translateY(-50%); font-size: 1.5rem; color: var(--green-light);
+        }
+        .process-step:last-child::after { display: none; }
+        .process-step .num {
+            width: 44px; height: 44px; line-height: 44px; border-radius: 50%;
+            background: var(--green); color: #fff; font-weight: 600; font-size: 1.1rem;
+            margin: 0 auto 0.8rem; display: flex; align-items: center; justify-content: center;
+        }
+        .process-step h4 { font-size: 0.95rem; margin-bottom: 0.3rem; }
+        .process-step p { font-size: 0.85rem; color: var(--text-light); }
+
+        /* ===== Section: Pricing ===== */
+        .pricing { background: var(--cream); }
+        .pricing-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.5rem;
+        }
+        .pricing-card {
+            background: var(--white); border-radius: var(--radius); padding: 2rem;
+            box-shadow: var(--shadow); text-align: center;
+            transition: transform 0.25s, box-shadow 0.25s;
+            display: flex; flex-direction: column;
+        }
+        .pricing-card:hover { transform: translateY(-4px); }
+        .pricing-card.featured {
+            border: 2px solid var(--green); position: relative;
+            transform: scale(1.02);
+        }
+        .pricing-card.featured:hover { transform: scale(1.02) translateY(-4px); }
+        .pricing-card .badge {
+            position: absolute; top: -12px; left: 50%; transform: translateX(-50%);
+            background: var(--green); color: #fff; padding: 0.2rem 1rem;
+            border-radius: 50px; font-size: 0.8rem; font-weight: 500;
+        }
+        .pricing-card .name { font-size: 1.1rem; font-weight: 600; margin-bottom: 0.3rem; }
+        .pricing-card .price { font-size: 2.2rem; font-weight: 700; color: var(--green); margin: 0.5rem 0; }
+        .pricing-card .price span { font-size: 1rem; font-weight: 400; color: var(--text-light); }
+        .pricing-card .price-note { font-size: 0.85rem; color: var(--text-light); margin-bottom: 1rem; }
+        .pricing-card ul { list-style: none; font-size: 0.9rem; color: var(--text-light); flex: 1; }
+        .pricing-card ul li { padding: 0.3rem 0; }
+        .pricing-card ul li::before { content: "✓ "; color: var(--green); }
+        .pricing-card .btn { margin-top: 1.5rem; }
+        .pricing-card.custom-price .price { color: var(--terracotta); }
+
+        .pricing-note {
+            text-align: center; margin-top: 2rem; font-size: 0.85rem; color: var(--text-light);
+        }
+
+        /* ===== Section: FAQ ===== */
+        .faq { background: var(--white); }
+        .faq-list { max-width: 700px; margin: 0 auto; }
+        .faq-item {
+            border-bottom: 1px solid #E8E2D8; padding: 1.2rem 0;
+        }
+        .faq-q {
+            display: flex; justify-content: space-between; align-items: center;
+            font-weight: 500; cursor: pointer; font-size: 1rem;
+        }
+        .faq-q .toggle { font-size: 1.2rem; color: var(--green); transition: transform 0.2s; }
+        .faq-item.open .faq-q .toggle { transform: rotate(45deg); }
+        .faq-a {
+            max-height: 0; overflow: hidden; transition: max-height 0.3s ease, padding 0.3s;
+            font-size: 0.9rem; color: var(--text-light); padding-top: 0;
+        }
+        .faq-item.open .faq-a {
+            max-height: 300px; padding-top: 0.8rem;
+        }
+
+        /* ===== Section: Venue ===== */
+        .venue { background: var(--cream); }
+        .venue-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.5rem;
+        }
+        .venue-card {
+            background: var(--white); border-radius: var(--radius);
+            padding: 1.5rem; text-align: center;
+            box-shadow: var(--shadow);
+        }
+        .venue-placeholder {
+            width: 100%; height: 180px;
+            background: var(--cream-dark);
+            border: 2px dashed #DCD5CB; border-radius: var(--radius-sm);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 3rem; color: #B8B0A3;
+            margin-bottom: 1rem;
+        }
+        .venue-card h3 { font-size: 1rem; margin-bottom: 0.3rem; }
+        .venue-card p { font-size: 0.85rem; color: var(--text-light); }
+        .venue-note {
+            text-align: center; margin-top: 2rem;
+            font-size: 0.9rem; color: var(--text-light);
+        }
+
+        /* ===== Section: Contact ===== */
+        .contact {
+            background: var(--green); color: #fff; text-align: center;
+        }
+        .contact h2 { color: #fff; }
+        .contact .section-subtitle { color: rgba(255,255,255,0.7); }
+        .contact-box {
+            display: inline-block; background: rgba(255,255,255,0.12);
+            padding: 2rem 3rem; border-radius: var(--radius);
+            margin-top: 1rem;
+        }
+        .contact-box img {
+            width: 200px; height: auto; margin: 0 auto 1rem;
+            border-radius: var(--radius-sm); display: block;
+            cursor: pointer; transition: transform 0.2s;
+        }
+        .contact-box .contact-qr:hover img { transform: scale(1.03); }
+        .contact-box p { margin-top: 0.5rem; font-size: 0.95rem; }
+        .contact-box .wechat-id { font-size: 1.1rem; font-weight: 600; letter-spacing: 0.05em; }
+
+        /* ===== QR Lightbox ===== */
+        .qr-modal {
+            display: none; position: fixed; inset: 0; z-index: 999;
+            background: rgba(30, 30, 30, 0.88); backdrop-filter: blur(4px);
+            align-items: center; justify-content: center; flex-direction: column;
+            padding: 1.5rem;
+        }
+        .qr-modal.open { display: flex; }
+        .qr-modal img {
+            width: min(72vw, 320px); height: auto;
+            background: #fff; border-radius: 12px; padding: 14px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.4);
+        }
+        .qr-modal .modal-title {
+            color: #fff; margin: 1.2rem 0 0; font-size: 1rem; font-weight: 600;
+        }
+        .qr-modal .modal-sub {
+            color: rgba(255,255,255,0.65); margin: 0.3rem 0 1.2rem; font-size: 0.85rem;
+        }
+        .qr-modal .modal-actions { display: flex; gap: 0.8rem; }
+        .qr-modal .btn-download { background: #fff; color: var(--green); }
+        .qr-modal .btn-download:hover { background: #eee; transform: none; box-shadow: none; }
+        .qr-modal .btn-close { background: transparent; color: #fff; border: 1px solid rgba(255,255,255,0.4); }
+        .qr-modal .btn-close:hover { background: rgba(255,255,255,0.1); transform: none; box-shadow: none; }
+
+        /* ===== Footer ===== */
+        footer {
+            background: #2D2D2D; color: rgba(255,255,255,0.5); padding: 2.5rem 0;
+            text-align: center; font-size: 0.8rem; line-height: 1.8;
+        }
+        footer a { color: rgba(255,255,255,0.6); }
+        footer a:hover { color: #fff; }
+
+        /* ===== Responsive ===== */
+        @media (max-width: 768px) {
+            section { padding: 3.5rem 0; }
+            .hero { padding: 7rem 0 4rem; }
+            .process-steps { grid-template-columns: 1fr 1fr; }
+            .process-step::after { display: none; }
+            .pricing-card.featured { transform: none; }
+            .pricing-card.featured:hover { transform: translateY(-4px); }
+            .contact-box { padding: 1.5rem; width: 100%; }
+            nav { display: none; }
+            .hero-contact { flex-direction: column; text-align: center; padding: 1.2rem; }
+            .hero-contact-qr img { width: 150px; }
+
+            /* ===== QR Lightbox (mobile) ===== */
+            .qr-modal img { width: min(82vw, 300px); }
+            .qr-modal .modal-actions { flex-wrap: wrap; justify-content: center; }
+        }
+        @media (max-width: 480px) {
+            .process-steps { grid-template-columns: 1fr; }
+            .service-grid { grid-template-columns: 1fr; }
+            .pricing-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ===== Header ===== -->
+    <header>
+        <div class="container">
+            <div class="logo">蔓之楚之<span>.</span></div>
+            <nav>
+                <a href="#services">服务</a>
+                <a href="#process">流程</a>
+                <a href="#pricing">价格</a>
+                <a href="#faq">常见问题</a>
+                <a href="#contact" class="cta-nav">联系我们</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- ===== Hero ===== -->
+    <section class="hero" id="hero">
+        <div class="container">
+            <h1>有些话，<span class="accent">蔓</span>延到身后<br>也能清晰<span class="accent">楚</span>楚</h1>
+            <p class="tagline">
+                蔓之楚之，为您保管那些「重要但不好当面说」的托付。<br>
+                实物物品、数字账号、遗愿清单——安全托管，在需要时温暖交付。
+            </p>
+            <div class="hero-buttons">
+                <a href="#services" class="btn btn-primary">了解服务</a>
+                <a href="#contact" class="btn btn-secondary">咨询详情</a>
+            </div>
+            <div class="hero-contact">
+                <a href="qrcode-wechat.jpg" class="hero-contact-qr" onclick="openQrModal(event)" title="点击放大 / 保存二维码">
+                    <img src="qrcode-wechat.jpg" alt="企业微信二维码" />
+                </a>
+                <div class="hero-contact-info">
+                    <p class="hero-contact-label">👋 有任何疑问，扫码添加企业微信</p>
+                    <p class="hero-contact-note">点击二维码可放大 / 保存 · 一对一人工服务 9:00-21:00</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <hr class="section-divider">
+
+    <!-- ===== Pricing ===== -->
+    <section class="pricing" id="pricing">
+        <div class="container">
+            <h2>价格透明，按需选择</h2>
+            <p class="section-subtitle">先用低价验证需求，后续逐步完善</p>
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <div class="name">📦 实物物品托付</div>
+                    <div class="price">¥199 <span>/ 首年</span></div>
+                    <div class="price-note">物品处置+情感留言，含1次交付</div>
+                    <ul>
+                        <li>实物物品处置清单</li>
+                        <li>信件/语音/视频留言</li>
+                        <li>指定接收人</li>
+                        <li>加密存储+1次交付</li>
+                    </ul>
+                    <a href="#contact" class="btn btn-secondary">咨询购买</a>
+                </div>
+                <div class="pricing-card">
+                    <div class="name">🔐 数字账号处理</div>
+                    <div class="price">¥99 <span>/ 首年</span></div>
+                    <div class="price-note">账号清单+处理意愿，含1次交付</div>
+                    <ul>
+                        <li>各平台账号清单</li>
+                        <li>处理意愿（注销/保留）</li>
+                        <li>数字文件归属指定</li>
+                        <li>加密存储+1次交付</li>
+                    </ul>
+                    <a href="#contact" class="btn btn-secondary">咨询购买</a>
+                </div>
+                <div class="pricing-card featured">
+                    <div class="badge">推荐</div>
+                    <div class="name">🎁 综合套餐</div>
+                    <div class="price">¥269 <span>/ 首年</span></div>
+                    <div class="price-note">实物+账号，省 ¥29</div>
+                    <ul>
+                        <li>实物物品托付</li>
+                        <li>数字账号处理</li>
+                        <li>含1次免费更新</li>
+                    </ul>
+                    <a href="#contact" class="btn btn-primary">咨询购买</a>
+                </div>
+                <div class="pricing-card custom-price">
+                    <div class="name">🌟 遗愿清单（定制）</div>
+                    <div class="price">按项报价</div>
+                    <div class="price-note">实地交付服务，按需求灵活报价</div>
+                    <ul>
+                        <li>定期探望（家人/故人）</li>
+                        <li>代理祭祀（代祭扫/献花）</li>
+                        <li>骨灰处理安排</li>
+                        <li>一对一专人服务</li>
+                    </ul>
+                    <a href="#contact" class="btn btn-secondary">咨询详情</a>
+                </div>
+            </div>
+            <p class="pricing-note">* 所有服务均为按年付费：首年收取服务费，第二年及以后每年 ¥99 元（长期存储与服务保障）</p>
+        </div>
+    </section>
+
+    <hr class="section-divider">
+
+    <!-- ===== Problem ===== -->
+    <section class="problem" id="problem">
+        <div class="container">
+            <h2>有些事，不提前安排就会留下遗憾</h2>
+            <p class="section-subtitle">不是不谈，是不知道该怎么开口</p>
+            <div class="problem-grid">
+                <div class="problem-card">
+                    <div class="icon">😔</div>
+                    <h4>当面难以开口</h4>
+                    <p>病情、家庭关系、保护家人情绪，很多话说不出口</p>
+                </div>
+                <div class="problem-card">
+                    <div class="icon">⏳</div>
+                    <h4>时间不确定</h4>
+                    <p>想提前安排，但不想现在就让家人面对</p>
+                </div>
+                <div class="problem-card">
+                    <div class="icon">📝</div>
+                    <h4>细节容易遗漏</h4>
+                    <p>宠物习惯、账号处理、物品归属——口头说容易忘</p>
+                </div>
+                <div class="problem-card">
+                    <div class="icon">🤝</div>
+                    <h4>缺少可信中间方</h4>
+                    <p>直接托付给个人怕遗忘或泄露，又不想走正式遗嘱</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <hr class="section-divider">
+
+    <!-- ===== Services ===== -->
+    <section class="services" id="services">
+        <div class="container">
+            <h2>我们的服务</h2>
+            <p class="section-subtitle">每一个托付，都是心意</p>
+            <div class="service-grid">
+                <!-- Service 1 -->
+                <div class="service-card">
+                    <div class="icon">📦</div>
+                    <h3>实物物品托付</h3>
+                    <span class="tag tag-standard">标准服务</span>
+                    <div class="desc">
+                        <p>个人物品的处置意愿，以及给家人的信件、语音、视频留言。</p>
+                    </div>
+                    <ul>
+                        <li>实物物品清单与处置意向（给谁/捐赠/保留）</li>
+                        <li>给家人/朋友的信件留言</li>
+                        <li>语音/视频留言录制</li>
+                        <li>指定接收人及可见范围</li>
+                    </ul>
+                </div>
+                <!-- Service 2 -->
+                <div class="service-card">
+                    <div class="icon">🔐</div>
+                    <h3>数字账号处理</h3>
+                    <span class="tag tag-standard">标准服务</span>
+                    <div class="desc">
+                        <p>各平台账号想怎么处理——注销、保留、还是下载数据留给家人。</p>
+                    </div>
+                    <ul>
+                        <li>微信/支付宝/社交/游戏等账号清单</li>
+                        <li>各账号处理意愿（注销/保留/移交）</li>
+                        <li>数字照片/文件归属指定</li>
+                        <li>不存储密码，仅存意愿</li>
+                    </ul>
+                </div>
+                <!-- Service 3: Custom / On-site -->
+                <div class="service-card custom">
+                    <div class="icon">🌟</div>
+                    <h3>遗愿清单（定制）</h3>
+                    <span class="tag tag-custom">定制服务</span>
+                    <div class="desc">
+                        <p>需要实地交付的心愿——定期探望、代理祭祀、骨灰处理等，由专人一对一落实。</p>
+                    </div>
+                    <ul>
+                        <li>定期探望（家人/故人）</li>
+                        <li>代理祭祀（代祭扫/代献花）</li>
+                        <li>骨灰处理安排（安葬/撒放）</li>
+                        <li>按实际需求定制方案，灵活报价</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <hr class="section-divider">
+
+    <!-- ===== Process ===== -->
+    <section class="process" id="process">
+        <div class="container">
+            <h2>服务流程</h2>
+            <p class="section-subtitle">每一步都有真人陪伴</p>
+            <div class="process-steps">
+                <div class="process-step">
+                    <div class="num">1</div>
+                    <h4>咨询沟通</h4>
+                    <p>通过企业微信了解服务，选择适合您的方案</p>
+                </div>
+                <div class="process-step">
+                    <div class="num">2</div>
+                    <h4>签约付款</h4>
+                    <p>确认服务内容，企业微信完成付款</p>
+                </div>
+                <div class="process-step">
+                    <div class="num">3</div>
+                    <h4>填写托付</h4>
+                    <p>按模板填写内容，可多次修改完善</p>
+                </div>
+                <div class="process-step">
+                    <div class="num">4</div>
+                    <h4>安全托管</h4>
+                    <p>资料加密存档，定期与您确认存活状态</p>
+                </div>
+                <div class="process-step">
+                    <div class="num">5</div>
+                    <h4>温暖交付</h4>
+                    <p>触发条件满足后，将内容交付给指定接收人</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <hr class="section-divider">
+
+    <!-- ===== FAQ ===== -->
+    <section class="faq" id="faq">
+        <div class="container">
+            <h2>常见问题</h2>
+            <p class="section-subtitle">您可能关心的几个问题</p>
+            <div class="faq-list">
+                <div class="faq-item">
+                    <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+                        <span>这些内容有法律效力吗？</span>
+                        <span class="toggle">+</span>
+                    </div>
+                    <div class="faq-a">
+                        蔓之楚之的服务内容属于「个人意愿表达」，不具备法律强制执行力。我们明确不替代正式遗嘱或法律文件。如果您需要正式的财产分配或遗嘱服务，建议咨询专业律师。
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+                        <span>我的内容安全吗？你们能看到吗？</span>
+                        <span class="toggle">+</span>
+                    </div>
+                    <div class="faq-a">
+                        所有托付内容采用加密存储，严格限制内部人员访问权限。我们以最小权限原则设计流程，未经您的授权，任何人无法查看您的托付内容。
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+                        <span>怎么确保不会误触发？</span>
+                        <span class="toggle">+</span>
+                    </div>
+                    <div class="faq-a">
+                        我们采用「多因素触发」机制：定期存活确认 + 指定紧急联系人确认 + 人工审核。您在住院、出差等情况下有充足宽限期，不会因为短期失联就触发交付。
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+                        <span>我可以随时修改内容吗？</span>
+                        <span class="toggle">+</span>
+                    </div>
+                    <div class="faq-a">
+                        可以。您随时可以通过企业微信联系我们修改、增删托付内容。年度维护服务包含内容更新权益。
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+                        <span>接收人怎么知道有内容？</span>
+                        <span class="toggle">+</span>
+                    </div>
+                    <div class="faq-a">
+                        触发条件满足后，我们会通过您指定的方式（微信/邮件/加密链接）通知接收人，并清晰告知「这是什么、如何查看、注意事项」。接收人验证身份后即可查看您留给ta的内容。
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+                        <span>你们公司能存在多久？我存了几年后怎么办？</span>
+                        <span class="toggle">+</span>
+                    </div>
+                    <div class="faq-a">
+                        我们理解这是最关键的问题。初期我们控制成本、设计可迁移的数据方案，确保即使在极端情况下，您的托付内容也能被妥善交付。我们会在服务协议中明确数据迁移与保障条款。
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <hr class="section-divider">
+
+    <!-- ===== Venue ===== -->
+    <section class="venue" id="venue">
+        <div class="container">
+            <h2>我们的场地</h2>
+            <p class="section-subtitle">实地服务，安心托付</p>
+            <div class="venue-grid">
+                <div class="venue-card">
+                    <div class="venue-placeholder">🖼️</div>
+                    <h3>场地图片占位</h3>
+                    <p>此处将展示服务场地照片</p>
+                </div>
+                <div class="venue-card">
+                    <div class="venue-placeholder">🖼️</div>
+                    <h3>场地图片占位</h3>
+                    <p>此处将展示服务场地照片</p>
+                </div>
+                <div class="venue-card">
+                    <div class="venue-placeholder">🖼️</div>
+                    <h3>场地图片占位</h3>
+                    <p>此处将展示服务场地照片</p>
+                </div>
+            </div>
+            <p class="venue-note">📍 场地地址与介绍待补充</p>
+        </div>
+    </section>
+
+    <hr class="section-divider">
+
+    <!-- ===== Contact ===== -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <h2>联系我们</h2>
+            <p class="section-subtitle">有任何疑问，欢迎咨询</p>
+            <div class="contact-box">
+                <a href="qrcode-wechat.jpg" class="contact-qr" onclick="openQrModal(event)" title="点击放大 / 保存二维码">
+                    <img src="qrcode-wechat.jpg" alt="企业微信二维码" />
+                </a>
+                <p>扫码添加企业微信</p>
+                <p style="font-size: 0.85rem; opacity: 0.7; margin-top: 0.5rem;">点击二维码可放大 / 保存 · 工作时间：9:00 - 21:00</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== Footer ===== -->
+    <footer>
+        <div class="container">
+            <p>蔓之楚之 — 身后托付，安心之选</p>
+            <p>本平台提供的内容为「个人意愿表达」，不具法律强制效力，不替代正式遗嘱或法律文件。</p>
+            <p style="margin-top: 0.5rem;">
+                <a href="#">服务协议</a> · <a href="#">隐私政策</a> · <a href="#">免责声明</a>
+            </p>
+            <p style="margin-top: 0.5rem;">&copy; 2026 蔓之楚之 · 蔓楚科技</p>
+        </div>
+    </footer>
+
+    <!-- ===== QR Lightbox ===== -->
+    <div class="qr-modal" id="qrModal" onclick="closeQrModal(event)">
+        <img src="qrcode-wechat.jpg" alt="企业微信二维码" />
+        <p class="modal-title">扫码添加企业微信</p>
+        <p class="modal-sub">长按图片可直接保存</p>
+        <div class="modal-actions">
+            <a href="qrcode-wechat.jpg" class="btn btn-download" download="蔓之楚之-企业微信.jpg" onclick="event.stopPropagation()">⬇ 保存二维码</a>
+            <button class="btn btn-close" onclick="closeQrModal()">关闭</button>
+        </div>
+    </div>
+
+    <script>
+        function openQrModal(e) {
+            e.preventDefault();
+            document.getElementById('qrModal').classList.add('open');
+        }
+        function closeQrModal(e) {
+            if (e && e.target !== e.currentTarget) return; // 点击弹窗内部不关闭
+            document.getElementById('qrModal').classList.remove('open');
+        }
+        // 按 ESC 关闭
+        document.addEventListener('keydown', function (e) {
+            if (e.key === 'Escape') closeQrModal();
+        });
+    </script>
+
+</body>
+</html>
