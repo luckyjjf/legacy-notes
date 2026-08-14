@@ -293,6 +293,17 @@
         }
         .contact-box .contact-qr:hover img { transform: scale(1.03); }
         .contact-box p { margin-top: 0.5rem; font-size: 0.95rem; }
+        .contact-box .btn-kefu {
+            display: inline-block; margin-bottom: 1.2rem;
+            background: #fff; color: var(--green);
+            padding: 0.9rem 2.4rem; border-radius: 50px;
+            font-size: 1.05rem; font-weight: 600;
+            transition: all 0.25s; border: none; cursor: pointer;
+        }
+        .contact-box .btn-kefu:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+        }
         .contact-box .wechat-id { font-size: 1.1rem; font-weight: 600; letter-spacing: 0.05em; }
 
         /* ===== QR Lightbox ===== */
@@ -379,7 +390,7 @@
             </p>
             <div class="hero-buttons">
                 <a href="#services" class="btn btn-primary">了解服务</a>
-                <a href="#contact" class="btn btn-secondary">咨询详情</a>
+                <a href="https://work.weixin.qq.com/kfid/kfc840a16d52318ed05" class="btn btn-secondary" target="_blank" rel="noopener">💬 在线咨询</a>
             </div>
             <div class="hero-contact">
                 <a href="qrcode-wechat.jpg" class="hero-contact-qr" onclick="openQrModal(event)" title="点击放大 / 保存二维码">
@@ -688,10 +699,11 @@
             <h2>联系我们</h2>
             <p class="section-subtitle">有任何疑问，欢迎咨询</p>
             <div class="contact-box">
+                <a href="https://work.weixin.qq.com/kfid/kfc840a16d52318ed05" class="btn btn-kefu" target="_blank" rel="noopener">💬 点击立即咨询</a>
+                <p>或扫码添加企业微信</p>
                 <a href="qrcode-wechat.jpg" class="contact-qr" onclick="openQrModal(event)" title="点击放大 / 保存二维码">
                     <img src="qrcode-wechat.jpg" alt="企业微信二维码" />
                 </a>
-                <p>扫码添加企业微信</p>
                 <p style="font-size: 0.85rem; opacity: 0.7; margin-top: 0.5rem;">点击二维码可放大 / 保存 · 工作时间：9:00 - 21:00</p>
             </div>
         </div>
